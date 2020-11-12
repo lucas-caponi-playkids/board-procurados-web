@@ -30,6 +30,32 @@ export default {
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
+
+    ["@dansmaculotte/nuxt-security",
+      {
+        dev: true,
+        csp: {
+          directives: {
+            defaultSrc: ["'self'"],
+            scriptSrc: [
+              "'self'",
+              "'sha256-V3BCJ5uD3Kg5rYNnehUAfG7F2MSoV0wetV4iU6feE7w='",
+              "'sha256-C2xL4ESd+OD7LM0p6W7moLbauKZ8fdoSDu8Jtyhlrl4='",
+              "'sha256-ptLXEkyyhBSntCt8Rv98JOW388DuAdgh1ImLG3PJs/A='",
+              "'unsafe-eval'",
+            ],
+            connectSrc: ["'self'"],
+            imgSrc: ["'self'", "https://ca.slack-edge.com"],
+            styleSrc: ["'self'"],
+          },
+          loose: false,
+          reportOnly: false,
+          setAllHeaders: false,
+          disableAndroid: false,
+          browserSniff: true,
+        },
+      },
+    ]
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
@@ -68,29 +94,7 @@ export default {
   axios: {},
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
-  build: {},
-
-  render: {
-    csp: {
-      hashAlgorism: 'sha256',
-      reportOnly: false,
-      policies: {
-        'default-src': ["'self'"],
-        'script-src': [
-          "'self'",
-          "'unsafe-eval'",
-          //"'sha256-V3BCJ5uD3Kg5rYNnehUAfG7F2MSoV0wetV4iU6feE7w='"
-        ],
-        'img-src': ["https:", "'self'"],
-        'style-src': [
-          "'self'",
-          "'unsafe-inline'"
-        ],
-        'script-src-elem': [
-         "'self'",
-         "'unsafe-inline'"
-        ],
-      },
-    }
-  }
+  build: {
+    extractCSS: true,
+  },
 }
