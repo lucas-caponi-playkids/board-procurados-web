@@ -69,4 +69,28 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
+
+  render: {
+    csp: {
+      hashAlgorism: 'sha256',
+      reportOnly: false,
+      policies: {
+        'default-src': ["'self'"],
+        'script-src': [
+          "'self'",
+          "'unsafe-eval'",
+          //"'sha256-V3BCJ5uD3Kg5rYNnehUAfG7F2MSoV0wetV4iU6feE7w='"
+        ],
+        'img-src': ["https:", "'self'"],
+        'style-src': [
+          "'self'",
+          "'unsafe-inline'"
+        ],
+        'script-src-elem': [
+         "'self'",
+         "'unsafe-inline'"
+        ],
+      },
+    }
+  }
 }
